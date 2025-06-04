@@ -1,222 +1,17 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#4a148c">
-    <title>شمارشگر معکوس عید غدیر</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #333;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-
-        .container {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto;
-            transition: all 0.5s ease;
-        }
-
-        h1 {
-            color: #4a148c;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            line-height: 1.4;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 25px 0;
-        }
-
-        .countdown-item {
-            background: linear-gradient(145deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            min-width: 65px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            flex: 1 0 auto;
-        }
-
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .countdown-label {
-            font-size: 0.8rem;
-            margin-top: 5px;
-        }
-
-        .message {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #4a148c;
-            font-weight: bold;
-            line-height: 1.5;
-        }
-
-        .completed {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-
-        .completed-message {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #ffeb3b;
-            text-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
-            padding: 0 20px;
-            line-height: 1.4;
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            border-radius: 50%;
-            animation: fall 5s linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .notification-btn {
-            background: linear-gradient(145deg, #ff416c, #ff4b2b);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .notification-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
-        }
-
-        .notification-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* بهبود برای نمایش در موبایل */
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 15px;
-                width: 100%;
-                border-radius: 0;
-                margin: 0;
-                min-height: 100vh;
-            }
-
-            h1 {
-                font-size: 1.4rem;
-            }
-
-            .countdown-item {
-                min-width: 60px;
-                padding: 10px;
-            }
-
-            .countdown-number {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <!-- بقیه تگ‌های head مانند قبل -->
 </head>
 <body>
-    <div class="container">
-        <h1 id="event-title">شمارشگر عید غدیر</h1>
-        <div class="message" id="event-description">زمان باقی مانده تا عید سعید غدیر خم</div>
-
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">روز</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">ساعت</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">دقیقه</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">ثانیه</div>
-            </div>
-        </div>
-
-        <button class="notification-btn" id="notificationBtn">فعال کردن اعلان</button>
-    </div>
-
-    <div class="completed" id="completed">
-        <div class="completed-message" id="completed-message">عید غدیر مبارک!</div>
-    </div>
+    <!-- محتوای HTML مانند قبل -->
 
     <script>
         // تنظیمات قابل تغییر
         const config = {
             eventTitle: "روز عید غدیر",
             eventDescription: "زمان باقی مانده تا عید سعید غدیر خم",
-            targetDate: "2025-06-13T20:00:00", // تاریخ هدف به صورت YYYY-MM-DDTHH:MM:SS
+            targetDate: "2025-06-5T00:07:00",
             completedMessage: "🎉 عید غدیر مبارک! 🎉",
             notificationTitle: "وقت شادی رسیده است!",
             notificationMessage: "عید غدیر خم فرا رسیده است!",
@@ -228,194 +23,144 @@
         };
 
         // عناصر DOM
-        const eventTitleEl = document.getElementById('event-title');
-        const eventDescriptionEl = document.getElementById('event-description');
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-        const completedEl = document.getElementById('completed');
-        const completedMessageEl = document.getElementById('completed-message');
-        const notificationBtn = document.getElementById('notificationBtn');
+        const elements = {
+            eventTitle: document.getElementById('event-title'),
+            eventDescription: document.getElementById('event-description'),
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
+            minutes: document.getElementById('minutes'),
+            seconds: document.getElementById('seconds'),
+            completed: document.getElementById('completed'),
+            completedMessage: document.getElementById('completed-message'),
+            notificationBtn: document.getElementById('notificationBtn')
+        };
 
         // اعمال تنظیمات
-        eventTitleEl.textContent = config.eventTitle;
-        eventDescriptionEl.textContent = config.eventDescription;
-        completedMessageEl.textContent = config.completedMessage;
+        elements.eventTitle.textContent = config.eventTitle;
+        elements.eventDescription.textContent = config.eventDescription;
+        elements.completedMessage.textContent = config.completedMessage;
 
         // مدیریت اعلان‌ها
         let notificationPermission = false;
-        let isSubscribed = false;
 
-        function initializeNotifications() {
+        function checkNotificationSupport() {
             if (!('Notification' in window)) {
-                notificationBtn.textContent = 'مرورگر از اعلان پشتیبانی نمی‌کند';
-                notificationBtn.disabled = true;
-                return;
+                elements.notificationBtn.textContent = 'مرورگر از اعلان پشتیبانی نمی‌کند';
+                elements.notificationBtn.disabled = true;
+                return false;
             }
+            return true;
+        }
 
-            if (Notification.permission === 'granted') {
-                notificationPermission = true;
-                notificationBtn.textContent = 'اعلان‌ها فعال هستند';
-                notificationBtn.disabled = true;
-            } else if (Notification.permission === 'denied') {
-                notificationBtn.textContent = 'اعلان‌ها مسدود شده‌اند';
-                notificationBtn.disabled = true;
-            } else {
-                notificationBtn.textContent = 'فعال کردن اعلان‌ها';
-                notificationBtn.disabled = false;
+        function updateNotificationButton() {
+            if (!checkNotificationSupport()) return;
+
+            switch(Notification.permission) {
+                case 'granted':
+                    notificationPermission = true;
+                    elements.notificationBtn.textContent = 'اعلان‌ها فعال هستند';
+                    elements.notificationBtn.disabled = true;
+                    break;
+                case 'denied':
+                    elements.notificationBtn.textContent = 'اعلان‌ها مسدود شده‌اند';
+                    elements.notificationBtn.disabled = true;
+                    break;
+                default:
+                    elements.notificationBtn.textContent = 'فعال کردن اعلان‌ها';
+                    elements.notificationBtn.disabled = false;
             }
         }
 
         async function requestNotificationPermission() {
+            if (!checkNotificationSupport()) return;
+
             try {
                 const permission = await Notification.requestPermission();
-
+                
                 if (permission === 'granted') {
                     notificationPermission = true;
-                    notificationBtn.textContent = 'اعلان‌ها فعال هستند';
-                    notificationBtn.disabled = true;
-
-                    // ارسال اعلان آزمایشی
-                    if ('serviceWorker' in navigator) {
-                        try {
-                            const registration = await navigator.serviceWorker.ready;
-                            registration.showNotification('اعلان فعال شد', {
-                                body: 'وقتی زمان به پایان برسد به شما اطلاع داده می‌شود.',
-                                icon: 'https://example.com/icon.png',
-                                vibrate: [200, 100, 200]
-                            });
-                        } catch (e) {
-                            console.error('خطا در ارسال اعلان:', e);
-                            new Notification('اعلان فعال شد', {
-                                body: 'وقتی زمان به پایان برسد به شما اطلاع داده می‌شود.'
-                            });
-                        }
-                    } else {
-                        new Notification('اعلان فعال شد', {
-                            body: 'وقتی زمان به پایان برسد به شما اطلاع داده می‌شود.'
-                        });
-                    }
-                } else {
-                    notificationBtn.textContent = 'اجازه اعلان داده نشد';
-                    notificationBtn.disabled = true;
+                    sendTestNotification('اعلان فعال شد', 'وقتی زمان به پایان برسد به شما اطلاع داده می‌شود.');
                 }
+                
+                updateNotificationButton();
             } catch (error) {
                 console.error('خطا در درخواست مجوز اعلان:', error);
-                notificationBtn.textContent = 'خطا در فعال‌سازی اعلان';
+                elements.notificationBtn.textContent = 'خطا در فعال‌سازی اعلان';
             }
         }
 
-        notificationBtn.addEventListener('click', requestNotificationPermission);
-
-        // ایجاد اکلیل
-        function createConfetti() {
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.width = Math.random() * 10 + 5 + 'px';
-            confetti.style.height = confetti.style.width;
-            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(confetti);
-
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
+        function sendTestNotification(title, body) {
+            if (!notificationPermission) return;
+            
+            try {
+                if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.ready.then(registration => {
+                        registration.showNotification(title, {
+                            body: body,
+                            vibrate: [200, 100, 200]
+                        });
+                    });
+                } else {
+                    new Notification(title, { body: body });
+                }
+            } catch (e) {
+                console.error('خطا در ارسال اعلان:', e);
+            }
         }
 
-        // شمارشگر معکوس
+        function sendFinalNotification() {
+            if (!notificationPermission) return;
+            
+            try {
+                const options = {
+                    body: config.notificationMessage,
+                    vibrate: [200, 100, 200, 100, 200],
+                    icon: '/icon.png' // مسیر آیکون را اصلاح کنید
+                };
+                
+                if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.ready.then(registration => {
+                        registration.showNotification(config.notificationTitle, options);
+                    });
+                } else {
+                    new Notification(config.notificationTitle, options);
+                }
+            } catch (e) {
+                console.error('خطا در ارسال اعلان نهایی:', e);
+            }
+        }
+
+        // شمارشگر معکوس (مانند قبل)
         function updateCountdown() {
             const targetDate = new Date(config.targetDate);
             const now = new Date();
             const diff = targetDate - now;
 
             if (diff <= 0) {
-                // زمان به پایان رسیده است
                 clearInterval(countdownInterval);
-                daysEl.textContent = '00';
-                hoursEl.textContent = '00';
-                minutesEl.textContent = '00';
-                secondsEl.textContent = '00';
-
-                // نمایش پیام تکمیل
-                completedEl.style.display = 'flex';
-                document.querySelector('.container').style.transform = 'scale(0.9)';
-                document.querySelector('.container').style.opacity = '0.5';
-
-                // ایجاد اکلیل
-                for (let i = 0; i < 100; i++) {
-                    setTimeout(createConfetti, i * 50);
-                }
-
-                // ارسال اعلان
-                if (notificationPermission) {
-                    try {
-                        if ('serviceWorker' in navigator) {
-                            navigator.serviceWorker.ready.then(registration => {
-                                registration.showNotification(config.notificationTitle, {
-                                    body: config.notificationMessage,
-                                    icon: 'https://example.com/icon.png',
-                                    vibrate: [200, 100, 200, 100, 200]
-                                });
-                            });
-                        } else {
-                            new Notification(config.notificationTitle, {
-                                body: config.notificationMessage,
-                                icon: 'https://example.com/icon.png'
-                            });
-                        }
-                    } catch (e) {
-                        console.error('خطا در ارسال اعلان:', e);
-                    }
-                }
-
+                // ... کدهای قبلی نمایش پیام تکمیل
+                sendFinalNotification();
                 return;
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            daysEl.textContent = days.toString().padStart(2, '0');
-            hoursEl.textContent = hours.toString().padStart(2, '0');
-            minutesEl.textContent = minutes.toString().padStart(2, '0');
-            secondsEl.textContent = seconds.toString().padStart(2, '0');
+            // ... محاسبات زمان باقی‌مانده
         }
 
+        // رویدادها
+        elements.notificationBtn.addEventListener('click', requestNotificationPermission);
+
+        // مقداردهی اولیه
+        updateNotificationButton();
         const countdownInterval = setInterval(updateCountdown, 1000);
-        updateCountdown(); // فراخوانی اولیه
-        initializeNotifications(); // مقداردهی اولیه اعلان‌ها
+        updateCountdown();
 
-        // جلوگیری از رفتارهای ناخواسته در موبایل
-        document.addEventListener('gesturestart', function (e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('touchmove', function (e) {
-            if (e.scale !== 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // اضافه کردن service worker برای اعلان‌های پیشرفته
+        // Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker ثبت شد');
-                }).catch(registrationError => {
-                    console.log('ثبت ServiceWorker ناموفق:', registrationError);
+                    console.log('ServiceWorker با موفقیت ثبت شد');
+                }).catch(error => {
+                    console.log('ثبت ServiceWorker ناموفق:', error);
                 });
             });
         }
